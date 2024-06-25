@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TradeX :- Price Tracking</title>
+  <!-- Bootstrap-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <script src="script.js"></script>
+  <style>
+    .header {
+        background-color: #fff;
+        color: #000;
+        text-align: center;
+        width: 100%;
+    }
+
+    .header h1 {
+        margin: 30px;
+        font-size: 35px;
+    }
+
+    /* .container {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    } */
+
+    .crypto-container {
+        background-color: #fff;
+        border-radius: 10px;
+        color: #000;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* .buy {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .sell {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .buy:hover, .sell:hover {
+        background-color: transparent;
+        color: #000;
+        border: 1px solid #000;
+    } */
+
+    .change span {
+        color: green;
+    }
+
+    .change span.negative {
+        color: red;
+    }
+
+    .change span.neutral {
+        color: grey;
+    }
+    .navbar {
+  background-color: #343a40;
+}
+
+.navbar-brand img {
+  height: 65px;
+}
+
+.navbar-nav .nav-link.active {
+  color: #fff; 
+  font-weight: bold; 
+}
+.crypto-icon img {
+    width: 30px; /* Set the width to the desired size */
+    height: auto; /* Maintain aspect ratio */
+}
+
+  
+  table {
+    width: 100%;
+    overflow-x: auto; /* Add horizontal scrolling for small screens */
+    display: block; /* Display the table as a block element */
+  }
+
+  th, td {
+    padding: 8px; /* Decrease padding for smaller screens */
+    font-size: 14px; /* Decrease font size for smaller screens */
+  }
+
+
+
+  .navbar-brand img {
+    height: 50px; /* Decrease the height of the logo for smaller screens */
+  }
+
+
+
+  .site-footer {
+            background-color: #26272b;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .site-footer h6 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px;
+        }
+
+        .site-footer p {
+            color: #737373;
+        }
+
+        .footer-links a {
+            color: #737373;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .social-icons a {
+            color: #818a91;
+            font-size: 16px;
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            line-height: 44px;
+            text-align: center;
+            margin-right: 8px;
+            border-radius: 100%;
+            transition: all 0.2s linear;
+        }
+
+        .social-icons a.facebook:hover {
+        background-color: #3b5998;
+        }
+        .social-icons a.twitter:hover {
+        background-color: #00aced;
+        }
+        .social-icons a.instagram:hover{
+          background-color: #ea4c89;
+        }
+
+
+
+
+  </style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand ms-auto" href="index.html"><img src="logo.png" alt="" height="65"></a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="price_tracking.html">Price</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="nft_marketplace.html">NFT Marketplace</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#learn">Learn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-warning me-2" href="login.html" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-success" href="signup.html" data-bs-toggle="modal" data-bs-target="#signupModal">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="logIn(); return false;">
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="loginEmail" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginPassword">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Signup Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="signUp(); return false;">
+            <div class="mb-3">
+              <label for="signupEmail" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="signupEmail" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="signupPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="signupPassword">
+            </div>
+            <button type="submit" class="btn btn-success">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   <br><br>
+    <h5 style="color: rgb(55, 54, 54); text-align: center;"> <--- Cryptocurrency Price Tracker --- ></h5>
+    <br><hr>
+    <br>
+    
+    <div class="container" id="price">
+        <div class="crypto-container">
+            <table>
+                <thead >
+                    <tr>
+                        <th>Coin</th>
+                        <th>Price</th>
+                        <th>Change</th>
+                        <th>24h Volume</th>
+                        <th>Market Cap</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="crypto-list"></tbody>
+            </table>
+        </div>
+    </div>
+
+<br><hr><br>
+
+         <!-- Footer -->
+<footer class="site-footer mt-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5" id="about">
+                <h6>About</h6>
+                <p class="text-justify">Welcome to TradeX, your premier destination for online trading and investment solutions.
+
+                  At TradeX, we're committed to empowering individuals to achieve their financial goals through cutting-edge technology and expert guidance.</p>
+            </div>
+            <div class="col-md-2">
+                <h6>Categories</h6>
+                <ul class="footer-links">
+                    <li><a href="price_tracking.html">price</a></li>
+                    <li><a href="nft_marketplace.html">NFT Marketplace</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <h6>Quick Links</h6>
+                <ul class="footer-links">
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="col-md-3" id="about">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14691.543966085927!2d72.4884286!3d22.9912195!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9bc4ce73bf61%3A0x323634959dab072f!2sLJ%20University!5e0!3m2!1sen!2sin!4v1710939959962!5m2!1sen!2sin" width="350" height="290" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" style="padding: 50;"></iframe>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-6 col-12">
+                <p class="copyright-text">
+                  Copyright &copy; 2024 All Rights Reserved by TradeX
+                </p>
+            </div>
+            <div class="col-md-4 col-sm-6 col-12">
+              <ul class="social-icons float-md-end list-inline">
+                <li class="list-inline-item"><a class="facebook" href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="list-inline-item"><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+  </footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const cryptoContainer = document.querySelector(".crypto-list");
+    const apiKey = "coinranking9a90c02e6f7e04e10a85e3f11d1b823bebaf7ed3de7fa07f";
+    const coinsUUID = [
+        "Qwsogvtv82FCd",
+        "razxDUgYGNAdQ",
+        "HIVsRcGKkPFtW",
+        "KNS7lFwBX",
+        "WcwrkfNI4FUAe",
+        "-l8Mn2pVlRs-p",
+        "zNZHO_Sjf",
+        "aKzUVe4Hh_CON",
+        "qzawljRxB5bYu",
+        "dvUj0CzDZ",
+        "PDKcptVnzJTmN-sV8",
+        "a91GCGd_u96cF",
+        "25W7FG7om",
+        "qUhEFk1I61atv",
+        "CiixT63n3",
+        "VLqpJwogdhHNb",
+        "uW2tk-ILY0ii",
+        "Mtfb0obXVh59u",
+        "x4WXHge-vvFY",
+        "xz24e0BjL",
+        "_H5FVG9iW",
+        "D7B1x_ks7WhV5",
+        "ZlZpzOJo43mIo",
+        "Z96jIvLU7",
+        "08CsQa-Ov",
+        "Knsels4_Ol-Ny",
+        "MoTuySvg7",
+        "ncYFcP709"
+    ];
+
+    coinsUUID.forEach((uuid) => {
+        fetch(`https://api.coinranking.com/v2/coin/${uuid}`, {
+            headers: {
+                'x-access-token': apiKey,
+            },
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'fail') {
+                console.error(`Error: ${data.message}`);
+                return;
+            }
+
+            const cryptoRow = document.createElement("tr");
+
+            cryptoRow.innerHTML = `
+                <td>
+                    <div class="crypto-icon">
+                        <img src="${data.data.coin.iconUrl}" />
+                        <span>${data.data.coin.name}</span>
+                        <small>${data.data.coin.symbol}</small>
+                    </div>
+                </td>
+                <td>
+                    <div class="crypto-price">
+                        <span> $${parseFloat(data.data.coin.price).toFixed(2)}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="change">
+                        <span class="${data.data.coin.change > 0 ? 'positive' : (data.data.coin.change < 0 ? 'negative' : 'neutral')}">${data.data.coin.change}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="volume">
+                        <span> $${data.data.coin['24hVolume']}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="market-cap">
+                        <span> $${data.data.coin.marketCap}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="view-more">
+                        <button class=" btn btn-outline-success">Buy</button>
+                        <button class=" btn btn-outline-danger">Sell</button>
+                    </div>
+                </td>
+            `;
+            cryptoContainer.appendChild(cryptoRow);
+        })
+        .catch(error => console.error('Fetch error:', error));
+    });
+});
+
+</script>
+  
+</body>
+</html>
